@@ -1,0 +1,37 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>	
+  </PropertyGroup>
+
+  <ItemGroup>   
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.10" />   
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="8.0.10" />   
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.10" />   
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.10">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>   
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.10" />   
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.10">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>   
+    <PackageReference Include="NLog" Version="5.3.4" />   
+    <PackageReference Include="NLog.Database" Version="5.3.4" />
+    <PackageReference Include="NLog.Extensions.Logging" Version="5.3.14" />
+    <PackageReference Include="NLog.Web.AspNetCore" Version="5.3.14" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.9.0" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.6" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\KPBrokers.Submission.Quote.BusinessLogic\KPBrokers.Submission.Quote.BusinessLogic.csproj" />
+    <ProjectReference Include="..\KPBrokers.Submission.Quote.Common\KPBrokers.Submission.Quote.Common.csproj" />
+    <ProjectReference Include="..\KPBrokers.Submission.Quote.DAL\KPBrokers.Submission.Quote.DAL.csproj" />
+    <ProjectReference Include="..\KPBrokers.Submission.Quote.Services\KPBrokers.Submission.Quote.Services.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,280 @@
+﻿@using Newtonsoft.Json
+@model KPBrokers.Submission.Quote.UI.ViewModels.BrokerViewModel
+
+@{
+
+}
+
+@section PageActions {
+    <!-- Breadcrumb start -->
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item" style="font-size:small; font-weight:600 !important">Manage Broker Contacts </li>
+        | @Model.Broker.Name
+    </ol>
+    <!-- Breadcrumb end -->
+    <!-- App actions start -->
+    <div class="app-actions">
+        <a class="btn" asp-area="" asp-controller="admin" asp-action="brokersearch">Search Broker (Docubox)</a>
+        <a class="btn active" asp-area="" asp-controller="admin" asp-action="agents">Manage Agents</a>
+        <a class="btn" asp-area="" asp-controller="admin" asp-action="brokers">Manage Brokers</a>
+        <a class="btn" asp-area="" asp-controller="admin" asp-action="carriers">Manage Carriers</a>
+        <a class="btn" asp-area="" asp-controller="admin" asp-action="accountsettings">Users Account Settings</a>
+    </div>
+    <!-- App actions end -->
+}
+
+
+<input id="hdn-transaction-message" type="hidden" value="@Model.DisplayMessage" />
+@if (!string.IsNullOrEmpty(Model.DisplayMessage))
+    @Html.Raw(@Model.DisplayMessage)
+
+
+<div class="row gutters">
+    <div class="col-xl-6 col-lg-12 col-md-12 col-sm-12 col-12">
+        <div class="card">
+            @*<div class="card-header">
+            <div class="card-title">Carrier Details</div>
+            </div>*@
+
+            <div class="card-body">
+                <br />
+                <strong>Broker Contacts</strong>
+                <button class="btn btn-primary btn-md float-right" data-toggle="modal" data-target="#create-broker-contact-modal">Add Broker Contact</button>
+                <hr />
+                <div class="table-responsive">
+                    <table id="tbl-broker-contacts" class="table table-hover table-bordered m-0 basic-table">
+                        <thead>
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.BrokerContact.TitleId)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.BrokerContact.FirstName)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.BrokerContact.LastName)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.BrokerContact.Email)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.BrokerContact.Phone)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.BrokerContact.UpdatedDate)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.BrokerContact.UpdatedByName)
+                                </th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.BrokerContacts)
+
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.TitleName)
+                                    </td>
+                                    <td nowrap>
+                                        @Html.DisplayFor(modelItem => item.FirstName)
+                                    </td>
+                                    <td nowrap>
+                                        @Html.DisplayFor(modelItem => item.LastName)
+                                    </td>
+                                    <td nowrap>
+                                        @Html.DisplayFor(modelItem => item.Email)
+                                    </td>
+                                    <td nowrap>
+                                        @Html.DisplayFor(modelItem => item.Phone)
+                                    </td>
+                                    <td nowrap>
+                                        @Html.DisplayFor(modelItem => item.UpdatedDate)
+                                    </td>
+                                    <td nowrap>
+                                        @Html.DisplayFor(modelItem => item.UpdatedByName)
+                                    </td>
+                                    <td>
+                                        <a href="#" onclick="populateEditBrokerContact('@JsonConvert.SerializeObject(item)')" type="Edit Broker Contact" data-toggle="modal" data-target="#edit-broker-contact-modal"><i class="icon-edit-3"></i></a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-6 col-lg-12 col-md-12 col-sm-12 col-12">
+        <div class="card">
+            <div class="card-body">
+                <br />
+                <strong>Docubox Availabe Broker Contacts</strong>
+                <hr />
+                <div class="table-responsive">
+                    <table id="tbl-dbx-broker-contacts" class="table table-hover table-bordered m-0 basic-table">
+                        <thead>
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.DocuboxBrokerContact.Title)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.DocuboxBrokerContact.FirstName)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.DocuboxBrokerContact.LastName)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.DocuboxBrokerContact.Email)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.DocuboxBrokerContact.Phone)
+                                </th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.DocuboxBrokerContacts)
+                            {
+                                string createdUser = (item.InSystem.HasValue && item.InSystem.Value == true) ? "text-decoration: line-through;" : string.Empty;
+
+                                <tr style="@createdUser">
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Title)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.FirstName)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.LastName)
+                                    </td>
+                                    <td nowrap>
+                                        @Html.DisplayFor(modelItem => item.Email)
+                                    </td>
+                                    <td nowrap>
+                                        @Html.DisplayFor(modelItem => item.Phone)
+                                    </td>
+                                    <td>
+                                        @if (item.InSystem.HasValue && item.InSystem.Value == true)
+
+                                        {
+                                            <span><i>Created</i></span>
+                                        }
+                                        @if (!item.InSystem.HasValue || item.InSystem.Value == false)
+
+                                        {
+                                            <a href="#" onclick="populateCreateBrokerContact('@JsonConvert.SerializeObject(item)')" type="Create Broker Contact" data-toggle="modal" data-target="#create-contact-docubox-modal"><i class="icon-user-plus"></i></a>
+                                        }
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="create-broker-contact-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="myLargeModalLabel"><i class="icon-add"></i>Create Broker Contact</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form asp-action="createaccount" method="post">
+                @Html.AntiForgeryToken()
+                <div class="modal-body">
+                    <partial name="_CreateBrokerContactPartial" model="Model" />
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-info">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="edit-broker-contact-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="myLargeModalLabel"><i class="icon-add"></i>Edit Broker Contact</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form asp-action="updatebrokercontact" method="post">
+                @Html.AntiForgeryToken()
+                <div class="modal-body">
+                    <partial name="_EditBrokerContactPartial" model="Model" />
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-info">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="create-contact-docubox-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="myLargeModalLabel"><i class="icon-add"></i>Create Broker Contact</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form asp-action="createaccount" method="post">
+                @Html.AntiForgeryToken()
+                <div class="modal-body">
+                    <partial name="_CreateBrokerContactPartial" model="Model" />
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-info">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Styles {
+    <!-- Data Tables -->
+    <link rel="stylesheet" href="~/vendor/datatables/dataTables.bs4.css" />
+    <link rel="stylesheet" href="~/vendor/datatables/dataTables.bs4-custom.css" />
+    <link href="~/vendor/datatables/buttons.bs.css" rel="stylesheet" />
+}
+
+@section scripts {
+    <!-- Slimscroll JS -->
+    <script src="~/vendor/slimscroll/slimscroll.min.js"></script>
+    <script src="~/vendor/slimscroll/custom-scrollbar.js"></script>
+
+    <!-- Data Tables -->
+    <script src="~/vendor/datatables/dataTables.min.js"></script>
+    <script src="~/vendor/datatables/dataTables.bootstrap.min.js"></script>
+
+    <!-- Custom Data tables -->
+    <script src="~/vendor/datatables/custom/custom-datatables.js"></script>
+    <script src="~/vendor/datatables/custom/fixedHeader.js"></script>
+
+    <!-- Download / CSV / Copy / Print -->
+    <script src="~/vendor/datatables/buttons.min.js"></script>
+    <script src="~/vendor/datatables/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+    <script src="~/vendor/datatables/vfs_fonts.js"></script>
+    <script src="~/vendor/datatables/html5.min.js"></script>
+    <script src="~/vendor/datatables/buttons.print.min.js"></script>
+
+    <!--Submission scripts-->
+    <script src="~/js/submissions/admin.js"></script>
+}

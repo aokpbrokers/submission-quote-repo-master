@@ -1,0 +1,65 @@
+﻿@model KPBrokers.Submission.Quote.UI.ViewModels.BrokerViewModel
+
+<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+<input type="hidden" asp-for="BrokerContact.BrokerContactId" />
+<input type="hidden" asp-for="Broker.BrokerId" />
+<input type="hidden" asp-for="Broker.SecondaryBrokerId" />
+<input type="hidden" asp-for="Broker.Name" />
+<input type="hidden" asp-for="UserAccount.CompanySecondaryId" />
+
+<div class="row gutters">
+      <div class="col-xl-6 col-lglg-6 col-md-6 col-sm-6 col-12">
+        <div class="form-group">
+            <label asp-for="BrokerContact.TitleId" class="control-label"></label>            
+             <select asp-for="BrokerContact.TitleId" asp-items="Model.Titles" required="required" class="form-control" style="width:100px;"></select>
+            <span asp-validation-for="BrokerContact.TitleId" class="text-danger"></span>
+        </div>
+    </div>
+    </div>
+<div class="row gutters">
+    <div class="col-xl-6 col-lglg-6 col-md-6 col-sm-6 col-12">
+        <div class="form-group">
+            <label asp-for="BrokerContact.FirstName" class="control-label"></label>
+            <input asp-for="BrokerContact.FirstName" class="form-control" required="required" />
+            <span asp-validation-for="BrokerContact.FirstName" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="col-xl-6 col-lglg-6 col-md-6 col-sm-6 col-12">
+        <div class="form-group">
+            <label asp-for="BrokerContact.LastName" class="control-label"></label>
+            <input asp-for="BrokerContact.LastName" class="form-control" required="required" />
+            <span asp-validation-for="BrokerContact.LastName" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="col-xl-6 col-lglg-6 col-md-6 col-sm-6 col-12">
+        <div class="form-group">
+            <label asp-for="BrokerContact.Email" class="control-label"></label>
+            <input asp-for="BrokerContact.Email" class="form-control" type="email" required="required" readonly="readonly" />
+            <span asp-validation-for="BrokerContact.Email" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="col-xl-6 col-lglg-6 col-md-6 col-sm-6 col-12">
+        <div class="form-group">
+            <label asp-for="BrokerContact.Phone" class="control-label"></label>
+            <input asp-for="BrokerContact.Phone" class="form-control" type="phone" required="required" />
+            <span asp-validation-for="BrokerContact.Phone" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="col-xl-3 col-lglg-3 col-md-3 col-sm-3 col-12">
+        <div class="form-group">
+            <label asp-for="BrokerContact.IsActive" class="control-label"></label>
+            <select asp-for="BrokerContact.IsActive" class="form-control" required="required">
+                <option value="true">Yes</option>
+                <option value="false">No</option>
+            </select>
+            <span asp-validation-for="BrokerContact.IsActive" class="text-danger"></span>
+        </div>
+    </div>
+</div>
+
+
+

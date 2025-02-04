@@ -1,0 +1,78 @@
+﻿@section PageActions {
+    <!-- Breadcrumb start -->
+    <ol class="breadcrumb">
+        <li><i class="icon-add-to-list"></i> &nbsp;</li>
+        <li class="breadcrumb-item">Quote Submission</li>
+    </ol>
+    <!-- Breadcrumb end -->
+    <!-- App actions start -->
+    <div class="app-actions">
+    </div>
+    <!-- App actions end -->
+}
+
+<div class="row gutters">
+    <div class="col-12">
+        <!-- Row start -->
+        <div class="card">
+            <ul class="nav nav-tabs" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link active" id="simple-tab-0" data-bs-toggle="tab" href="#simple-tabpanel-0" role="tab" aria-controls="simple-tabpanel-0" aria-selected="true">Insured Details</a>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" id="simple-tab-1" data-bs-toggle="tab" href="#simple-tabpanel-1" role="tab" aria-controls="simple-tabpanel-1" aria-selected="false">Saction Screening</a>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" id="simple-tab-2" data-bs-toggle="tab" href="#simple-tabpanel-2" role="tab" aria-controls="simple-tabpanel-2" aria-selected="false">Quote Submission Details</a>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" id="simple-tab-2" data-bs-toggle="tab" href="#simple-tabpanel-2" role="tab" aria-controls="simple-tabpanel-3" aria-selected="false">Units (Vehicles)</a>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" id="simple-tab-2" data-bs-toggle="tab" href="#simple-tabpanel-2" role="tab" aria-controls="simple-tabpanel-2" aria-selected="false">Drivers</a>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" id="simple-tab-2" data-bs-toggle="tab" href="#simple-tabpanel-2" role="tab" aria-controls="simple-tabpanel-2" aria-selected="false">Supporting Documents</a>
+                </li>
+            </ul>
+            <div class="tab-content pt-2" id="tab-content">
+                <div class="tab-pane active" id="simple-tabpanel-0" role="tabpanel" aria-labelledby="simple-tab-0">
+                    <form>
+                        <div class="col-xl-4 col-lglg-4 col-md-4 col-sm-12 col-12">
+                        <div class="form-group">
+                            <div class="input-group">
+                                    <input type="text" class="form-control" placeholder="Enter Insured DOT" aria-label="Enter Insured DOT" aria-describedby="button-addon-dot" required="required">
+                                <div class="input-group-append">
+                                        <button class="btn btn-primary" type="submit" data-toggle="tooltip" data-placement="right" title="Gets insured stored data from the US  department of transport."><i class="icon-search"></i> Get Insured details</button>
+                                </div> 
+                            </div> 
+                        </div>
+                        </div>
+                    </form>
+                    <hr/>
+                </div>
+                <div class="tab-pane" id="simple-tabpanel-1" role="tabpanel" aria-labelledby="simple-tab-1">
+                    #2
+                </div>
+                <div class="tab-pane" id="simple-tabpanel-2" role="tabpanel" aria-labelledby="simple-tab-2">
+                    #3
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Styles {
+    <!-- Steps Wizard CSS -->
+    <link rel="stylesheet" href="~/vendor/wizard/jquery.steps.css" />
+}
+
+@section scripts {
+    <!-- Slimscroll JS -->
+    <script src="~/vendor/slimscroll/slimscroll.min.js"></script>
+    <script src="~/vendor/slimscroll/custom-scrollbar.js"></script>
+    <!-- Steps wizard JS -->
+    <script src="~/vendor/wizard/jquery.steps.min.js"></script>
+    <script src="~/vendor/wizard/jquery.steps.custom.js"></script>
+}

@@ -1,0 +1,192 @@
+﻿@{
+    Layout = "_LayoutAdmin";
+    ViewData["Title"] = "Admin Page";
+}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+<link rel="stylesheet" href="~/css/contacts.css" />
+
+<div class="container mt-3">
+    <div class="row align-items-center">
+        <div class="col-md-8">
+            <div class="d-flex mb-3">
+                <a href="@Url.Action("AddCarrier", "Admin")" class="btn btn-secondary me-2">Add Carrier</a>
+                <!-- Add New Account Button with modal trigger -->
+                <a href="#" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#addNewAccountModal">Add New Account</a>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="input-group ms-2" style="flex-grow: 1;">
+                <span class="input-group-text">Search:</span>
+                <input type="text" name="query" class="form-control" placeholder="Search..." />
+                <button type="submit" class="btn btn-primary" style="height: 38px; width: 50px;">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for Add New Account -->
+    <div class="modal fade" id="addNewAccountModal" tabindex="-1" aria-labelledby="addNewAccountModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <!-- Increase the width of the modal -->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addNewAccountModalLabel">Add New Account</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- Form for adding a new account -->
+                    <form>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3 row">
+                                    <label for="role" class="col-md-4 col-form-label">Select Role</label>
+                                    <div class="col-md-8">
+                                        <select class="form-select" id="role" required>
+                                            <option value="" disabled selected>Select Role</option>
+                                            <option value="User">User</option>
+                                            <option value="Admin">Admin</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="mb-3 row">
+                                    <label for="title" class="col-md-4 col-form-label">Title</label>
+                                    <div class="col-md-8">
+                                        <select class="form-select" id="title" required>
+                                            <option value="" disabled selected>Select Title</option>
+                                            <option value="Mr">Mr.</option>
+                                            <option value="Ms">Ms.</option>
+                                            <option value="Dr">Dr.</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="mb-3 row">
+                                    <label for="firstName" class="col-md-4 col-form-label">First Name</label>
+                                    <div class="col-md-8">
+                                        <input type="text" class="form-control" id="firstName" placeholder="First Name" required />
+                                    </div>
+                                </div>
+                                <div class="mb-3 row">
+                                    <label for="lastName" class="col-md-4 col-form-label">Last Name</label>
+                                    <div class="col-md-8">
+                                        <input type="text" class="form-control" id="lastName" placeholder="Last Name" required />
+                                    </div>
+                                </div>
+                                <div class="mb-3 row">
+                                    <label for="username" class="col-md-4 col-form-label">Username</label>
+                                    <div class="col-md-8">
+                                        <input type="text" class="form-control" id="username" placeholder="Username" required />
+                                    </div>
+                                </div>
+                                <div class="mb-3 row">
+                                    <label for="email" class="col-md-4 col-form-label">Email</label>
+                                    <div class="col-md-8">
+                                        <input type="email" class="form-control" id="email" placeholder="Email" required />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="mb-3 row">
+                                    <label for="phone" class="col-md-4 col-form-label">Phone</label>
+                                    <div class="col-md-8">
+                                        <input type="tel" class="form-control" id="phone" placeholder="Phone" required />
+                                    </div>
+                                </div>
+                                <div class="mb-3 row">
+                                    <label for="emailConfirmed" class="col-md-4 col-form-label">Email Confirmed</label>
+                                    <div class="col-md-3">
+                                        <select class="form-select" id="emailConfirmed">
+                                            <option value="Yes">Yes</option>
+                                            <option value="No">No</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="mb-3 row">
+                                    <label for="lockUser" class="col-md-4 col-form-label">Lock/Unlock User</label>
+                                    <div class="col-md-3">
+                                        <select class="form-select" id="lockUser">
+                                            <option value="Yes">Yes</option>
+                                            <option value="No">No</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="mb-3 row">
+                                    <label for="twoFactorEnabled" class="col-md-4 col-form-label">Two Factor Enabled</label>
+                                    <div class="col-md-3">
+                                        <select class="form-select" id="twoFactorEnabled">
+                                            <option value="Yes">Yes</option>
+                                            <option value="No">No</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="mb-3 row">
+                                    <label for="isAdmin" class="col-md-4 col-form-label">Admin</label>
+                                    <div class="col-md-3">
+                                        <select class="form-select" id="isAdmin">
+                                            <option value="Yes">Yes</option>
+                                            <option value="No">No</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Save Account</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Table to show existing users -->
+    <div class="row mt-3">
+        <div class="col">
+            <table class="table table-striped table-bordered table-hover">
+                <thead class="table-header">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Email Confirmed</th>
+                        <th scope="col">Phone Number</th>
+                        <th scope="col">Role</th>
+                        <th scope="col">Admin</th>
+                        <th scope="col">Access Failed Count</th>
+                        <th scope="col">Lockout Enabled</th>
+                        <th scope="col">MFA Enabled</th>
+                        <th scope="col">Lockout End Date</th>
+                        <th scope="col">Password Last Updated</th>
+                        <th scope="col">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Example rows for user data -->
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>Carrier One</td>
+                        <td>carrier1@example.com</td>
+                        <td>Yes</td>
+                        <td>(123) 456-7890</td>
+                        <td>User</td>
+                        <td>No</td>
+                        <td>0</td>
+                        <td>No</td>
+                        <td>No</td>
+                        <td>N/A</td>
+                        <td>2024-01-01</td>
+                        <td>
+                            <a href="@Url.Action("EditCarrier", "Admin", new { id = 3 })" class="text-primary me-2">Edit</a>
+                            <a href="@Url.Action("DeleteCarrier", "Admin", new { id = 3 })" class="text-primary">Reset Password</a>
+                        </td>
+                    </tr>
+                    <!-- Additional rows here -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+

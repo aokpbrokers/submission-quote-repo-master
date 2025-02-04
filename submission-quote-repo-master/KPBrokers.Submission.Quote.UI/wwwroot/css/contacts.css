@@ -1,0 +1,38 @@
+﻿.table-header th {
+    background-color: #f8f9fa;
+    color: #333;
+    text-align: center;
+    padding: 10px;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.table tbody tr td, .table tbody tr th {
+    vertical-align: middle;
+    text-align: center;
+    padding: 8px;
+    font-size: 14px;
+}
+
+.btn-sm {
+    font-size: 12px;
+    padding: 4px 8px;
+}
+
+.modal-body .row {
+    margin-bottom: 20px;
+}
+
+.modal-body input[type="text"], .modal-body input[type="email"], .modal-body input[type="tel"], .modal-body select {
+    width: 100%;
+}
+
+.btn-custom {
+    background-color: #6c757d;
+    border-color: #6c757d;
+}
+
+  .btn-custom:hover {
+        background-color: #5a6268;
+        border-color: #545b62;
+    }

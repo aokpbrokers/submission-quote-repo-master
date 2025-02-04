@@ -1,0 +1,38 @@
+﻿#dashboard-tabs .nav-tabs {
+    border-bottom: none;
+}
+
+#dashboard-tabs .nav-link {
+    border-bottom: none;
+}
+/* Custom styles for the dashboard tabs */
+#dashboard-tabs {
+    background-color: #f8f9fa; /* Light grey background */
+
+    border-radius: 5px; /* Optional: Round the corners */
+}
+
+.nav-link {
+    width: 100%;
+    color: #007bff; /* Bootstrap primary color */
+}
+
+    .nav-link:hover {
+        background-color: #e2e6ea; /* Slightly darker grey on hover */
+        text-decoration: none; /* Remove underline on hover */
+    }
+
+    .nav-link.active {
+        background-color: #007bff; /* Active tab color */
+        color: white; /* Active tab text color */
+    }
+
+.custom-padding {
+    padding-top: 5px; /* Adjust the value as needed */
+    padding-left: 1px; /* Optional: Add left padding if needed */
+    padding-right: 1px; /* Optional: Add right padding if needed */
+}
+
+.container, .container-lg, .container-md, .container-sm, .container-xl {
+    max-width: 1521px;
+}

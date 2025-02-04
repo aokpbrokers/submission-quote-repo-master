@@ -1,0 +1,64 @@
+﻿@model KPBrokers.Submission.Quote.UI.ViewModels.BrokerViewModel
+
+<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+<input type="hidden" asp-for="AgentContact.AgentContactId" />
+<input type="hidden" asp-for="Agent.AgentId" />
+<input type="hidden" asp-for="Agent.SecondaryAgentId" />
+<input type="hidden" asp-for="Agent.Name"/>
+<input type="hidden" asp-for="UserAccount.CompanySecondaryId" />
+
+<div class="row gutters">
+    <div class="col-xl-6 col-lglg-6 col-md-6 col-sm-6 col-12">
+        <div class="form-group">
+            <label asp-for="AgentContact.TitleId" class="control-label"></label>
+            <select asp-for="AgentContact.TitleId" asp-items="Model.Titles" required="required" class="form-control" style="width:100px;"></select>
+            <span asp-validation-for="AgentContact.TitleId" class="text-danger"></span>
+        </div>
+    </div>
+</div>
+<div class="row gutters">
+    <div class="col-xl-6 col-lglg-6 col-md-6 col-sm-6 col-12">
+        <div class="form-group">
+            <label asp-for="AgentContact.FirstName" class="control-label"></label>
+            <input asp-for="AgentContact.FirstName" class="form-control" required="required" />
+            <span asp-validation-for="AgentContact.FirstName" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="col-xl-6 col-lglg-6 col-md-6 col-sm-6 col-12">
+        <div class="form-group">
+            <label asp-for="AgentContact.LastName" class="control-label"></label>
+            <input asp-for="AgentContact.LastName" class="form-control" required="required" />
+            <span asp-validation-for="AgentContact.LastName" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="col-xl-6 col-lglg-6 col-md-6 col-sm-6 col-12">
+        <div class="form-group">
+            <label asp-for="AgentContact.Email" class="control-label"></label>
+            <input asp-for="AgentContact.Email" class="form-control" type="email" required="required" readonly="readonly" />
+            <span asp-validation-for="AgentContact.Email" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="col-xl-6 col-lglg-6 col-md-6 col-sm-6 col-12">
+        <div class="form-group">
+            <label asp-for="AgentContact.Phone" class="control-label"></label>
+            <input asp-for="AgentContact.Phone" class="form-control" type="phone" required="required" />
+            <span asp-validation-for="AgentContact.Phone" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="col-xl-3 col-lglg-3 col-md-3 col-sm-3 col-12">
+        <div class="form-group">
+            <label asp-for="AgentContact.IsActive" class="control-label"></label>
+            <select asp-for="AgentContact.IsActive" class="form-control" required="required">
+                <option value="true">Yes</option>
+                <option value="false">No</option>
+            </select>           
+            <span asp-validation-for="AgentContact.IsActive" class="text-danger"></span>
+        </div>
+    </div>
+</div>
+
+
+

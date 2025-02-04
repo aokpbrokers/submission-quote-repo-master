@@ -1,0 +1,46 @@
+﻿@using KPBrokers.Submission.Quote.UI.Helpers
+
+<nav class="navbar navbar-expand-lg navbar-dark navbar-custom">
+    <a class="navbar-brand" href="#">| @Html.CurrentLoginUserRole() Dashboard |</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item active">
+                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Quoted Submissions</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Document</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Contact</a>
+            </li>
+            @if (User.IsInRole("Administrator"))
+            {
+                       <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="administrator" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Administrator
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="administrator">
+                            <li>
+                                <a class="dropdown-item" asp-area="" asp-controller="admin" asp-action="agents">Manage Agents</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" asp-area="" asp-controller="admin" asp-action="carriers">Manage Carriers</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" asp-area="" asp-controller="admin" asp-action="brokers">Manage Brokers</a>
+                            </li>
+                          @*   <li>
+                                <a class="dropdown-item" asp-area="" asp-controller="admin" asp-action="users">Manage Users</a>
+                            </li> *@
+                        </ul>
+                        </li>
+            }
+        </ul>
+    </div>
+</nav>

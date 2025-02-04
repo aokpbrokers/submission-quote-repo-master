@@ -1,0 +1,74 @@
+﻿@model KPBrokers.Submission.Quote.UI.ViewModels.BrokerViewModel
+
+<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+<input type="hidden" asp-for="UserAccount.UserId"/>
+
+<div class="row gutters">
+    <div class="col-xl-6 col-lglg-6 col-md-6 col-sm-6 col-12">
+        <div class="form-group">
+            <label asp-for="UserAccount.FullName" class="control-label"></label>
+            <input asp-for="UserAccount.FullName" class="form-control" readonly="readonly" />            
+        </div>
+    </div>
+
+    <div class="col-xl-6 col-lglg-6 col-md-6 col-sm-6 col-12">
+        <div class="form-group">
+            <label asp-for="UserAccount.Email" class="control-label"></label>
+            <input asp-for="UserAccount.Email" class="form-control" placeholder="Email" readonly="readonly" />         
+        </div>
+    </div>
+    
+    <div class="col-xl-6 col-lglg-6 col-md-6 col-sm-6 col-12">
+        <div class="form-group">
+            <label asp-for="UserAccount.Phone" class="control-label"></label>
+            <input asp-for="UserAccount.Phone" class="form-control" readonly="readonly" />           
+        </div>
+    </div>
+    <div class="col-xl-6 col-lglg-6 col-md-6 col-sm-6 col-12">
+        <div class="form-group">
+            <label asp-for="UserAccount.ContactRole" class="control-label"></label>
+            <input asp-for="UserAccount.ContactRole" class="form-control" placeholder="User Role" readonly="readonly" />         
+        </div>
+    </div>
+    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+        <div class="form-group">           
+            <label asp-for="UserAccount.IsAdmin" class="form-label"></label>
+            <select asp-for="UserAccount.IsAdmin" class="form-control" required="required" style="width:100px">
+                <option value="true">Yes</option>
+                <option value="false">No</option>
+            </select>
+            <span asp-validation-for="UserAccount.IsAdmin" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+        <div class="form-group">            
+            <label asp-for="UserAccount.LockUser" class="form-label"></label>
+            <select asp-for="UserAccount.LockUser" class="form-control" required="required" style="width:100px">
+                <option value="true">Yes</option>
+                <option value="false">No</option>
+            </select>
+            <span asp-validation-for="UserAccount.LockUser" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+        <div class="form-group">
+            <label asp-for="UserAccount.IsMFAEnabled" class="form-label"></label>
+            <select asp-for="UserAccount.IsMFAEnabled" class="form-control" required="required" style="width:100px">
+                <option value="true">Yes</option>
+                <option value="false">No</option>
+            </select>
+            <span asp-validation-for="UserAccount.IsMFAEnabled" class=" text-danger"></span>
+        </div>
+    </div>
+    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+        <div class="form-group">
+            <label asp-for="UserAccount.ConfirmedEmail" class="form-label"></label>
+            <select asp-for="UserAccount.ConfirmedEmail" class="form-control" required="required" style="width:100px">
+                <option value="true">Yes</option>
+                <option value="false">No</option>
+            </select>
+            <span asp-validation-for="UserAccount.ConfirmedEmail" class="text-danger"></span>
+        </div>
+    </div>
+</div>
+

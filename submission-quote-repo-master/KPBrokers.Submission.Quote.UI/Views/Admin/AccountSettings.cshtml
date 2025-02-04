@@ -1,0 +1,192 @@
+﻿@using KPBrokers.Submission.Quote.UI.Services.Security
+@using Newtonsoft.Json
+@model KPBrokers.Submission.Quote.UI.ViewModels.BrokerViewModel
+
+@{
+    ViewData["Title"] = "User";
+}
+
+@section PageActions {
+    <!-- Breadcrumb start -->
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">Manage User Accounts</li>
+    </ol>
+    <!-- Breadcrumb end -->
+    <!-- App actions start -->
+    <div class="app-actions">        
+        <a class="btn active" asp-controller="admin" asp-action="agents">Manage Agents</a>
+        <button type="button" class="btn active">Manage Brokers</button>
+        <button type="button" class="btn active">Manage Carriers</button>        
+    </div>
+    <!-- App actions end -->
+}
+
+<div class="row gutters">
+    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+        <input id="hdn-transaction-message" type="hidden" value="@Model.DisplayMessage" />
+        @if (!string.IsNullOrEmpty(Model.DisplayMessage))
+            @Html.Raw(Model.DisplayMessage)
+
+
+        <div class="table-container">
+            <div class="table-responsive">
+                <table id="copy-print-csv" class="table table-hover table-bordered">
+
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.UserAccount.FullName)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.UserAccount.Email)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.UserAccount.Phone)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.UserAccount.ContactRole)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.UserAccount.IsAdmin)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.UserAccount.AccessFailedCount)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.UserAccount.LockUser)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.UserAccount.LockoutEndDate)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.UserAccount.PasswordLastUpdated)
+                            </th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.UserAccounts!)
+
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.FullName)
+                                </td>
+
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Email)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Phone)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ContactRole)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.IsAdmin)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.AccessFailedCount)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.LockUser)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.LockoutEndDate)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.PasswordLastUpdated)
+                                </td>
+                                <td nowrap>
+                                    <a href="#" title="Edit user account" onclick="populateEditUserAccount('@JsonConvert.SerializeObject(item)');" data-toggle="modal" data-target="#edit-user-modal">
+                                        <i class="icon-edit-2"></i>
+                                    </a>  
+                                    &nbsp;
+                                    <a href="#" tile="Reset user password" onclick="populateUserPasswordChange('@JsonConvert.SerializeObject(item)');" data-toggle="modal" data-target="#reset-user-modal">
+                                        <i class="icon-login"></i>
+                                    </a>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="edit-user-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="myLargeModalLabel"><i class="icon-edit-3"></i> Edit User</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form asp-action="updateuseraccount" method="post">
+                    @Html.AntiForgeryToken()
+                    <div class="modal-body">
+                      <partial name="_EditUserAccountPartial" model="Model" /> 
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-info">Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="reset-user-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="myLargeModalLabel"><i class="icon-assignment"></i>Reset User Password</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form asp-action="resetuserpassword" method="post">
+                    @Html.AntiForgeryToken()
+                    <div class="modal-body">
+                     <partial name="_ResetUserPasswordPartial" model="Model" /> 
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-info">Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Styles {
+    <!-- Data Tables -->
+    <link rel="stylesheet" href="~/vendor/datatables/dataTables.bs4.css" />
+    <link rel="stylesheet" href="~/vendor/datatables/dataTables.bs4-custom.css" />
+    <link href="~/vendor/datatables/buttons.bs.css" rel="stylesheet" />
+}
+
+@section scripts {
+    <!-- Slimscroll JS -->
+    <script src="~/vendor/slimscroll/slimscroll.min.js"></script>
+    <script src="~/vendor/slimscroll/custom-scrollbar.js"></script>
+
+    <!-- Data Tables -->
+    <script src="~/vendor/datatables/dataTables.min.js"></script>
+    <script src="~/vendor/datatables/dataTables.bootstrap.min.js"></script>
+
+    <!-- Custom Data tables -->
+    <script src="~/vendor/datatables/custom/custom-datatables.js"></script>
+    <script src="~/vendor/datatables/custom/fixedHeader.js"></script>
+
+    <!-- Download / CSV / Copy / Print -->
+    <script src="~/vendor/datatables/buttons.min.js"></script>
+    <script src="~/vendor/datatables/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+    <script src="~/vendor/datatables/vfs_fonts.js"></script>
+    <script src="~/vendor/datatables/html5.min.js"></script>
+    <script src="~/vendor/datatables/buttons.print.min.js"></script>
+    <script src="~/js/submissions/admin.js"></script>
+}
+

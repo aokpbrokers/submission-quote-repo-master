@@ -1,0 +1,63 @@
+﻿@model KPBrokers.Submission.Quote.UI.ViewModels.BrokerViewModel
+
+<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+<input type="hidden" asp-for="Broker.BrokerId" />
+<input type="hidden" asp-for="Broker.SecondaryBrokerId" />
+<input type="hidden" asp-for="UserAccount.CompanyId" />
+<input type="hidden" asp-for="UserAccount.SecondaryId" class="secondaryId" />
+<input type="hidden" asp-for="Broker.Name" />
+<input type="hidden" asp-for="UserAccount.CompanyName" />
+<input type="hidden" asp-for="UserAccount.CompanySecondaryId" />
+
+<div class="row gutters">
+      <div class="col-xl-6 col-lglg-6 col-md-6 col-sm-6 col-12">
+        <div class="form-group">
+            <label asp-for="UserAccount.TitleId" class="control-label"></label>            
+             <select asp-for="UserAccount.TitleId" asp-items="Model.Titles" required="required" class="form-control title" style="width:100px;"></select>
+            <span asp-validation-for="UserAccount.TitleId" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="col-xl-6 col-lglg-6 col-md-6 col-sm-6 col-12">
+        <div class="form-group">
+            <label asp-for="UserAccount.ContactRole" class="control-label"></label>
+            <input asp-for="UserAccount.ContactRole" readonly="readonly" class="form-control" />
+            <span asp-validation-for="UserAccount.ContactRole" class="text-danger"></span>
+        </div>
+    </div>
+  
+    <div class="col-xl-6 col-lglg-6 col-md-6 col-sm-6 col-12">
+        <div class="form-group">
+            <label asp-for="UserAccount.FirstName" class="control-label"></label>
+            <input asp-for="UserAccount.FirstName" class="form-control firstname" required="required" />
+            <span asp-validation-for="UserAccount.FirstName" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="col-xl-6 col-lglg-6 col-md-6 col-sm-6 col-12">
+        <div class="form-group">
+            <label asp-for="UserAccount.LastName" class="control-label"></label>
+            <input asp-for="UserAccount.LastName" class="form-control lastname" required="required" />
+            <span asp-validation-for="UserAccount.LastName" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="col-xl-6 col-lglg-6 col-md-6 col-sm-6 col-12">
+        <div class="form-group">
+            <label asp-for="UserAccount.Email" class="control-label"></label>
+            <input asp-for="UserAccount.Email" class="form-control email" type="email" required="required" />
+            <span asp-validation-for="UserAccount.Email" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="col-xl-6 col-lglg-6 col-md-6 col-sm-6 col-12">
+        <div class="form-group">
+            <label asp-for="UserAccount.Phone" class="control-label"></label>
+            <input asp-for="UserAccount.Phone" class="form-control phone" type="phone" required="required" />
+            <span asp-validation-for="UserAccount.Phone" class="text-danger"></span>
+        </div>
+    </div>
+</div>
+
+
+

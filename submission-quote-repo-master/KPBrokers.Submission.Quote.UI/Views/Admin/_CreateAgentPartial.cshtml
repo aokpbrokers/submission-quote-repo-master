@@ -1,0 +1,66 @@
+﻿@model KPBrokers.Submission.Quote.UI.ViewModels.BrokerViewModel
+
+<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+<div class="row gutters">
+    <div class="col-xl-6 col-lglg-6 col-md-6 col-sm-6 col-12">
+        <div class="form-group">
+            <label asp-for="Agent.Name" class="control-label"></label>
+            <input asp-for="Agent.Name" class="form-control" required="required" placeholder="Agent name" />
+            <span asp-validation-for="Agent.Name" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="col-xl-6 col-lglg-6 col-md-6 col-sm-6 col-12">
+        <div class="form-group">
+            <label asp-for="Agent.DBA" class="control-label"></label>
+            <input asp-for="Agent.DBA" class="form-control" placeholder="Doing business as" />
+            <span asp-validation-for="Agent.DBA" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+        <h6 class="mb-3 text-primary">Address</h6>
+    </div>
+    <div class="col-xl-6 col-lglg-6 col-md-6 col-sm-6 col-12">
+        <div class="form-group">
+            <label asp-for="Agent.AddressLine1" class="control-label"></label>
+            <input asp-for="Agent.AddressLine1" class="form-control" required="required" placeholder="Address line 1" />
+            <span asp-validation-for="Agent.AddressLine1" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="col-xl-6 col-lglg-6 col-md-6 col-sm-6 col-12">
+        <div class="form-group">
+            <label asp-for="Agent.AddressLine2" class="control-label"></label>
+            <input asp-for="Agent.AddressLine2" class="form-control" placeholder="Address line 2" />
+            <span asp-validation-for="Agent.AddressLine2" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="col-xl-6 col-lglg-6 col-md-6 col-sm-6 col-12">
+        <div class="form-group">
+            <label asp-for="Agent.City" class="control-label"></label>
+            <input asp-for="Agent.City" class="form-control" required="required" placeholder="City" />
+            <span asp-validation-for="Agent.City" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="col-xl-6 col-lglg-6 col-md-6 col-sm-6 col-12">
+        <div class="form-group">
+            <label asp-for="Agent.State" class="control-label"></label>
+            <input asp-for="Agent.State" class="form-control" required="required" placeholder="State" />
+            <span asp-validation-for="Agent.State" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="col-xl-6 col-lglg-6 col-md-6 col-sm-6 col-12">
+        <div class="form-group">
+            <label asp-for="Agent.PostalCode" class="control-label"></label>
+            <input asp-for="Agent.PostalCode" class="form-control" required="required" placeholder="Postal code" />
+            <span asp-validation-for="Agent.PostalCode" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="col-xl-6 col-lglg-6 col-md-6 col-sm-6 col-12">
+        <div class="form-group">
+            <label asp-for="Agent.CountryId" class="control-label"></label>
+            <select asp-for="Agent.CountryId" asp-items="Model.Countries" required="required" class="form-control"></select>
+            <span asp-validation-for="Agent.CountryId" class="text-danger"></span>
+        </div>
+    </div>
+</div>

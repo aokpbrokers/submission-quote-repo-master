@@ -1,0 +1,196 @@
+﻿@model KPBrokers.Submission.Quote.UI.ViewModels.BrokerViewModel
+
+@{
+
+}
+
+@section PageActions {
+    <!-- Breadcrumb start -->
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">Docubox Agents Search</li>
+    </ol>
+    <!-- Breadcrumb end -->
+    <!-- App actions start -->
+    <div class="app-actions">
+        <a class="btn active" asp-area="" asp-controller="admin" asp-action="agents">Manage Agents</a>       
+        <a class="btn" asp-area="" asp-controller="admin" asp-action="brokers">Manage Brokers</a>
+        <a class="btn" asp-area="" asp-controller="admin" asp-action="carriers">Manage Carriers</a>
+        <a class="btn" asp-area="" asp-controller="admin" asp-action="accountsettings">Users Account Settings</a>
+    </div>
+    <!-- App actions end -->
+}
+
+<hr />
+<div class="custom-search">
+    <form asp-action="agentsearch">
+        @Html.AntiForgeryToken()
+        <input id="txtAgentSearch" name="txtAgentSearch" type="text" class="search-query" placeholder="Search here ..." required="required" minlength="4">
+        @* <i class="icon-search1"></i> *@
+        <button class="btn btn-primary">Search</button>
+    </form>
+</div>
+<hr />
+<input id="hdn-transaction-message" type="hidden" value="@Model.DisplayMessage" />
+@if (!string.IsNullOrEmpty(Model.DisplayMessage))
+    @Html.Raw(Model.DisplayMessage)
+
+
+<div class="row gutters">
+    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+        <div class="table-container">
+            <div class="table-responsive">
+                <table id="copy-print-csv" class="table table-hover table-bordered">
+
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Company.Id)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Company.Name)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Company.DBA)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Company.AccountEmail)
+                            </th>                          
+                            <th>
+                                @Html.DisplayNameFor(model => model.Company.AddressLine1)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Company.AddressLine2)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Company.City)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Company.State)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Company.PostalCode)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Company.Country)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Company.Role)
+                            </th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.Companies)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Id)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Name)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.DBA)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.AccountEmail)
+                                </td>                              
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.AddressLine1)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.AddressLine2)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.City)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.State)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.PostalCode)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Country)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Role)
+                                </td>
+                                <td>
+                                    <form asp-action="createagent">
+                                        <button type="button" class="btn icon-add-to-list" data-toggle="modal" data-target="#confirm-submit"></button>
+                                        <div class="modal fade" id="confirm-submit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="basicModalLabel">Comfirm</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        @Html.AntiForgeryToken()
+                                                        <input type="hidden" asp-for="Company.Id" value="@item.Id" />
+                                                        <input type="hidden" asp-for="Company.Name" value="@item.Name" />
+                                                        <input type="hidden" asp-for="Company.DBA" value="@item.DBA" />
+                                                        <input type="hidden" asp-for="Company.AccountEmail" value="@item.AccountEmail" />
+                                                        <input type="hidden" asp-for="Company.AddressId" value="@item.AddressId" />
+                                                        <input type="hidden" asp-for="Company.AddressLine1" value="@item.AddressLine1" />
+                                                        <input type="hidden" asp-for="Company.AddressLine2" value="@item.AddressLine2" />
+                                                        <input type="hidden" asp-for="Company.City" value="@item.City" />
+                                                        <input type="hidden" asp-for="Company.State" value="@item.State" />
+                                                        <input type="hidden" asp-for="Company.PostalCode" value="@item.PostalCode" />
+                                                        <input type="hidden" asp-for="Company.Country" value="@item.Country" />
+                                                        
+                                                        <p>Please comfirm that you would like to create this agent in the Submission App?</p>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="submit" class="btn btn-success">Yes, Submit</button>
+                                                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@section Styles {
+    <!-- Data Tables -->
+    <link rel="stylesheet" href="~/vendor/datatables/dataTables.bs4.css" />
+    <link rel="stylesheet" href="~/vendor/datatables/dataTables.bs4-custom.css" />
+    <link href="~/vendor/datatables/buttons.bs.css" rel="stylesheet" />
+}
+
+@section scripts {
+    <!-- Slimscroll JS -->
+    <script src="~/vendor/slimscroll/slimscroll.min.js"></script>
+    <script src="~/vendor/slimscroll/custom-scrollbar.js"></script>
+
+    <!-- Data Tables -->
+    <script src="~/vendor/datatables/dataTables.min.js"></script>
+    <script src="~/vendor/datatables/dataTables.bootstrap.min.js"></script>
+
+    <!-- Custom Data tables -->
+    <script src="~/vendor/datatables/custom/custom-datatables.js"></script>
+    <script src="~/vendor/datatables/custom/fixedHeader.js"></script>
+
+    <!-- Download / CSV / Copy / Print -->
+    <script src="~/vendor/datatables/buttons.min.js"></script>
+    <script src="~/vendor/datatables/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+    <script src="~/vendor/datatables/vfs_fonts.js"></script>
+    <script src="~/vendor/datatables/html5.min.js"></script>
+    <script src="~/vendor/datatables/buttons.print.min.js"></script>
+    <!--Admin script-->
+    <script src="~/js/submissions/admin.js"></script>
+}
